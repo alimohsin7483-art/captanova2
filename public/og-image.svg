@@ -1,0 +1,14 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#080808"/>
+  <defs>
+    <radialGradient id="g" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#C9A84C" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#080808" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#g)"/>
+  <text x="600" y="280" font-family="Georgia, serif" font-size="80" font-weight="300" fill="#F5F3EF" text-anchor="middle" letter-spacing="12">CAPTANOVA</text>
+  <text x="600" y="330" font-family="Georgia, serif" font-size="22" font-weight="300" fill="#C9A84C" text-anchor="middle" letter-spacing="8">MINDSET COACHING</text>
+  <text x="600" y="410" font-family="Georgia, serif" font-size="32" font-weight="300" fill="rgba(245,243,239,0.4)" text-anchor="middle">Unlock Your Full Potential</text>
+  <line x1="480" y1="360" x2="720" y2="360" stroke="#C9A84C" stroke-width="0.5" opacity="0.4"/>
+</svg>

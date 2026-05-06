@@ -1,0 +1,434 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500;600&family=DM+Mono:wght@400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─────────────────────────────────────────────────────────────
+   DESIGN TOKENS
+───────────────────────────────────────────────────────────── */
+:root {
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body:    'Jost', system-ui, sans-serif;
+  --font-mono:    'DM Mono', 'Courier New', monospace;
+
+  --gold:       #C9A84C;
+  --gold-light: #E2C06A;
+  --obsidian:   #090909;
+  --off-white:  #F0EDE8;
+  --muted:      rgba(240, 237, 232, 0.55);
+  --subtle:     rgba(240, 237, 232, 0.30);
+  --faint:      rgba(240, 237, 232, 0.12);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   RESET & BASE
+───────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; font-size: 17px; }
+
+body {
+  background-color: var(--obsidian);
+  color: var(--off-white);
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 1rem;         /* 17px base */
+  line-height: 1.75;
+  letter-spacing: 0.012em;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection { background: rgba(201,168,76,0.28); color: var(--off-white); }
+
+/* ─────────────────────────────────────────────────────────────
+   SCROLLBAR
+───────────────────────────────────────────────────────────── */
+::-webkit-scrollbar       { width: 4px; }
+::-webkit-scrollbar-track { background: #090909; }
+::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
+
+/* ─────────────────────────────────────────────────────────────
+   TYPOGRAPHY SCALE
+   Display  → Cormorant Garamond (editorial, emotive)
+   Body     → Jost (clean, modern)
+   Label    → DM Mono (technical, precise)
+───────────────────────────────────────────────────────────── */
+
+/* Hero headline — enormous, cinematic */
+.hero-heading {
+  font-family: var(--font-display);
+  font-size: clamp(3.8rem, 9vw, 8.5rem);
+  font-weight: 300;
+  line-height: 0.92;
+  letter-spacing: -0.025em;
+  color: var(--off-white);
+}
+
+/* Section headline */
+.section-heading {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 5vw, 4.5rem);
+  font-weight: 300;
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+  color: var(--off-white);
+}
+
+/* Card / sub-heading */
+.card-heading {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--off-white);
+}
+
+/* Body copy — comfortable reading size */
+.body-lg {
+  font-size: 1.1rem;   /* ~18.7px */
+  line-height: 1.8;
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.body-md {
+  font-size: 1rem;     /* 17px */
+  line-height: 1.75;
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.body-sm {
+  font-size: 0.92rem;  /* ~15.6px */
+  line-height: 1.7;
+  color: var(--muted);
+  font-weight: 400;
+}
+
+/* Eyebrow / section label — mono, spaced */
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;     /* 12.2px — readable but precise */
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 400;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   GOLD EFFECTS
+───────────────────────────────────────────────────────────── */
+.gold-text {
+  background: linear-gradient(135deg, #C9A84C 0%, #E2C06A 40%, #C9A84C 80%, #A8882E 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gold-shimmer {
+  background: linear-gradient(90deg,
+    #C9A84C 0%,
+    #E2C06A 25%,
+    #F5E4A8 50%,
+    #E2C06A 75%,
+    #C9A84C 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 3s linear infinite;
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}
+
+.gold-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   BUTTONS
+───────────────────────────────────────────────────────────── */
+.btn-gold {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, #C9A84C, #E2C06A, #C9A84C);
+  background-size: 200% auto;
+  color: #0a0900;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 1.05rem 2.8rem;
+  border: none;
+  cursor: pointer;
+  transition: background-position 0.5s ease, transform 0.25s ease, box-shadow 0.3s ease;
+  white-space: nowrap;
+}
+
+.btn-gold:hover {
+  background-position: right center;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(201,168,76,0.45);
+}
+
+.btn-gold:active { transform: translateY(0); }
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: transparent;
+  color: var(--gold);
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 1rem 2.8rem;
+  border: 1px solid var(--gold);
+  cursor: pointer;
+  transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.25s ease;
+  white-space: nowrap;
+}
+
+.btn-outline:hover {
+  background: rgba(201,168,76,0.08);
+  box-shadow: 0 0 28px rgba(201,168,76,0.18);
+  transform: translateY(-1px);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   INPUTS
+───────────────────────────────────────────────────────────── */
+.input-dark {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(201,168,76,0.22);
+  color: var(--off-white);
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 1rem;        /* comfortable 17px */
+  padding: 0.95rem 1.4rem;
+  width: 100%;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+  outline: none;
+  border-radius: 0;
+}
+
+.input-dark::placeholder {
+  color: rgba(240,237,232,0.28);
+  font-weight: 400;
+}
+
+.input-dark:focus {
+  border-color: var(--gold);
+  background: rgba(255,255,255,0.055);
+  box-shadow: 0 0 0 3px rgba(201,168,76,0.08);
+}
+
+textarea.input-dark { min-height: 130px; resize: vertical; }
+
+/* ─────────────────────────────────────────────────────────────
+   CARDS
+───────────────────────────────────────────────────────────── */
+.card-dark {
+  background: rgba(255,255,255,0.025);
+  border: 1px solid rgba(255,255,255,0.07);
+  transition: border-color 0.35s ease, transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.card-dark:hover {
+  border-color: rgba(201,168,76,0.28);
+  transform: translateY(-3px);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.3);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   PAIN CARDS
+───────────────────────────────────────────────────────────── */
+.pain-card {
+  border-left: 1px solid rgba(201,168,76,0.2);
+  padding: 2rem 2.2rem;
+  position: relative;
+  transition: border-color 0.3s ease;
+}
+
+.pain-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -1px;
+  height: 0; width: 1px;
+  background: var(--gold);
+  transition: height 0.5s ease;
+}
+
+.pain-card:hover::before { height: 100%; }
+.pain-card:hover { border-color: rgba(201,168,76,0.4); }
+
+/* ─────────────────────────────────────────────────────────────
+   TESTIMONIAL CARDS
+───────────────────────────────────────────────────────────── */
+.testimonial-card {
+  background: linear-gradient(140deg,
+    rgba(255,255,255,0.04) 0%,
+    rgba(201,168,76,0.03) 100%
+  );
+  border: 1px solid rgba(255,255,255,0.07);
+  padding: 2.8rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.testimonial-card::before {
+  content: '"';
+  font-family: var(--font-display);
+  font-size: 9rem;
+  line-height: 0.6;
+  color: rgba(201,168,76,0.08);
+  position: absolute;
+  top: 1.2rem;
+  left: 1.5rem;
+  pointer-events: none;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   ACCORDION
+───────────────────────────────────────────────────────────── */
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.accordion-content.open {
+  max-height: 600px;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   SCROLL REVEAL ANIMATIONS
+───────────────────────────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.reveal.visible       { opacity: 1; transform: translateY(0); }
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-32px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.reveal-left.visible  { opacity: 1; transform: translateX(0); }
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(32px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+/* ─────────────────────────────────────────────────────────────
+   KEYFRAMES
+───────────────────────────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(36px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-10px); }
+}
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 24px rgba(201,168,76,0.3); }
+  50%       { box-shadow: 0 0 60px rgba(201,168,76,0.65); }
+}
+@keyframes pageIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-up  { animation: fadeUp 0.9s ease forwards; }
+.animate-fade-in  { animation: fadeIn 1s ease forwards; }
+.animate-glow-pulse { animation: glowPulse 3s ease-in-out infinite; }
+
+/* ─────────────────────────────────────────────────────────────
+   WHATSAPP
+───────────────────────────────────────────────────────────── */
+.whatsapp-btn {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 1000;
+  width: 60px;
+  height: 60px;
+  background: #25D366;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 24px rgba(37,211,102,0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: float 5s ease-in-out infinite;
+}
+
+.whatsapp-btn:hover {
+  transform: scale(1.12);
+  box-shadow: 0 8px 32px rgba(37,211,102,0.6);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   LAYOUT UTILITIES
+───────────────────────────────────────────────────────────── */
+.bg-warm-gray    { background-color: #1c1c1c; }
+.bg-gold-gradient {
+  background: linear-gradient(90deg,
+    transparent, #C9A84C 30%, #E2C06A 50%, #C9A84C 70%, transparent
+  );
+}
+
+/* Progress bar */
+#progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #C9A84C, #E2C06A);
+  z-index: 9998;
+  transition: width 0.1s linear;
+}
+
+/* Noise overlay (very subtle) */
+.noise::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.35;
+}
+
+/* Stagger delays */
+.stagger-children > *:nth-child(1) { transition-delay: 0.08s; }
+.stagger-children > *:nth-child(2) { transition-delay: 0.16s; }
+.stagger-children > *:nth-child(3) { transition-delay: 0.24s; }
+.stagger-children > *:nth-child(4) { transition-delay: 0.32s; }
+.stagger-children > *:nth-child(5) { transition-delay: 0.40s; }
+.stagger-children > *:nth-child(6) { transition-delay: 0.48s; }
+
